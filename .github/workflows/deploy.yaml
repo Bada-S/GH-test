@@ -7,12 +7,12 @@ on:
 env:
   # Examples indicated in comments
   FLOWNAME: myflow 
-  DEPLOYMENTYAML: deploy.yaml # This is the name of the file that the deployment configurations will be written to
-  DEPLOYMENTNAME: demo # daily_ingestion, 15_min_interval
+  DEPLOYMENTYAML: deploy.yaml
+  DEPLOYMENTNAME: demo
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
-  INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
+  INFRA: kubernetes-job/gh-test
   # SCHEDULE: {your_schedule} # cron "0 0 * * *"
-  STORAGE: s3/gh-test # s3/my_flow_storage
+  STORAGE: s3/gh-test
   # Secrets are set in GitHub secrets-
   # PREFECT_API_KEY, PREFECT_API_URL, AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
   PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }} 
