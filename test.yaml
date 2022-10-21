@@ -22,7 +22,7 @@ infrastructure:
   labels: {}
   name: null
   command: null
-  image: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test:latest@sha256:ae636c9104e2b8c9260978a008179299ebba41a56e0bab6e925fe4f5672343e3
+  image: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test:latest@sha256:958181befac840d22ddf838e6eb731b432952fee3b412f0f90ef2209f99d4e57
   namespace: default
   service_account_name: null
   image_pull_policy: null

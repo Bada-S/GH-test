@@ -13,6 +13,8 @@ env:
   INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
   # SCHEDULE: {your_schedule} # cron "0 0 * * *"
   STORAGE: s3/gh-test # s3/my_flow_storage
+  # Secrets are set in GitHub secrets-
+  # PREFECT_API_KEY, PREFECT_API_URL, AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
   PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }} 
   PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }} # https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
   FILESYSTEM_EXTRAS: s3fs
