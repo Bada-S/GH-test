@@ -4,16 +4,12 @@ on:
       - "main"
 
 env:
-  # Examples indicated in comments
-  FLOWNAME: myflow 
-  DEPLOYMENTYAML: deploy.yaml
-  DEPLOYMENTNAME: demo
+  FLOWNAME: myflow
+  DEPLOYMENT_NAME: test
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
   INFRA: kubernetes-job/gh-test
-  # SCHEDULE: {your_schedule} # cron "0 0 * * *"
+  # SCHEDULE: {your_schedule} # example- cron "0 0 * * *"
   STORAGE: s3/gh-test
-  # Secrets are set in GitHub secrets-
-  # PREFECT_API_KEY, PREFECT_API_URL, AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
   FILESYSTEM_EXTRAS: s3fs
 
 jobs:
@@ -65,7 +61,7 @@ jobs:
       # Branch based logic to submit flows to different workqueues
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build ./flow/flow.py:$FLOWNAME
+        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/develop'
         name: Build and apply Prefect deployment
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply

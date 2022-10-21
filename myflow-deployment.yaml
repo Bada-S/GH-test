@@ -1,0 +1,44 @@
+###
+### A complete description of a Prefect Deployment for flow 'myflow'
+###
+name: name
+description: null
+version: c45f4a3be05f173e1f3ff5deefaaccbb
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: myflow
+manifest_path: null
+storage:
+  bucket_path: cs-prefect-bucket/gh-test
+  aws_access_key_id: '**********'
+  aws_secret_access_key: '**********'
+  _block_document_id: 4e06f326-dcbe-4e0c-b84a-bff7c5e4d814
+  _block_document_name: gh-test
+  _is_anonymous: false
+  block_type_slug: s3
+  _block_type_slug: s3
+path: ''
+entrypoint: flow/flow.py:myflow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties: {}
+  required: null
+  definitions: null
