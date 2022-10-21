@@ -13,9 +13,9 @@ env:
   INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
   # SCHEDULE: {your_schedule} # cron "0 0 * * *"
   STORAGE: s3/gh-test # s3/my_flow_storage
-  AWS-ACCESS-KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS-SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS-REGION: ${{ secrets.AWS_REGION }}
+  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_REGION: ${{ secrets.AWS_REGION }}
   PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }} 
   PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }} # https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
   FILESYSTEM_EXTRAS: s3fs
