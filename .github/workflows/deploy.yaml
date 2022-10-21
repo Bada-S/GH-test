@@ -14,8 +14,6 @@ env:
   STORAGE: s3/gh-test
   # Secrets are set in GitHub secrets-
   # PREFECT_API_KEY, PREFECT_API_URL, AWS_ACCESS_KEY, AWS_SECRET_KEY, AWS_REGION
-  PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }} 
-  PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }} # https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
   FILESYSTEM_EXTRAS: s3fs
 
 jobs:
@@ -41,6 +39,11 @@ jobs:
         run: |
           pip install -U wheel pip $FILESYSTEM_EXTRAS
           pip install -r requirements.txt
+      - name: Prefect Cloud login
+        run: |
+          prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
+          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }} 
+      # example url: https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
