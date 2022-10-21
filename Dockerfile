@@ -6,3 +6,4 @@ ENV PYTHONPATH=$PYTHONPATH:modules/
 
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+RUN pip install s3fs
