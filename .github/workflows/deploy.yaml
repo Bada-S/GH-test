@@ -13,9 +13,6 @@ env:
   INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
   # SCHEDULE: {your_schedule} # cron "0 0 * * *"
   STORAGE: s3/gh-test # s3/my_flow_storage
-  AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_REGION: ${{ secrets.AWS_REGION }}
   PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }} 
   PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }} # https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
   FILESYSTEM_EXTRAS: s3fs
@@ -46,9 +43,9 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          aws-access-key-id: $AWS-ACCESS-KEY
-          aws-secret-access-key: $AWS-SECRET_KEY
-          aws-region: $AWS-REGION
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
