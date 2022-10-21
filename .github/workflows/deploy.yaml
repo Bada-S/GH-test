@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - "main"
+      - "develop"
 
 env:
   # Examples indicated in comments
@@ -42,8 +43,7 @@ jobs:
       - name: Prefect Cloud login
         run: |
           prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
-          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }} 
-      # example url: https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
+          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
