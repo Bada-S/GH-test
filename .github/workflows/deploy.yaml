@@ -63,7 +63,7 @@ jobs:
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -o $DEPLOYMENTYAML -q prod --apply
-      - if: github.ref != 'refs/heads/feature'
+      - if: github.ref != 'refs/heads/develop'
         name: Build and apply Prefect deployment
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply
       # In order to attach schedules please attached a flag- cron, interval or rrule
