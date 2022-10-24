@@ -5,7 +5,6 @@ on:
       - "develop"
 
 env:
-  # Examples indicated in comments
   FLOWNAME: myflow
   DEPLOYMENTNAME: demo
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
