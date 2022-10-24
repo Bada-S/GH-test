@@ -666,7 +666,7 @@ pytzdata = ">=2020.1"
 
 [[package]]
 name = "prefect"
-version = "2.6.2"
+version = "2.6.3"
 description = "Workflow orchestration and management."
 category = "main"
 optional = false
@@ -1128,7 +1128,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "e8a90b2a06bdcf4ac28f58ae683326149c31cc9a37e35ebcb73828dda00f7233"
+content-hash = "c4f73c6aa59b0be38e1c2d606bb5aef6e09968fcb0c81be3d67f96dabc8e69a7"
 
 [metadata.files]
 aiobotocore = [
@@ -1814,8 +1814,8 @@ pendulum = [
     {file = "pendulum-2.1.2.tar.gz", hash = "sha256:b06a0ca1bfe41c990bbf0c029f0b6501a7f2ec4e38bfec730712015e8860f207"},
 ]
 prefect = [
-    {file = "prefect-2.6.2-py3-none-any.whl", hash = "sha256:f98718b8f7b9b62b87f94ab60b91be64131031a07dc72bcc704c54abfe3fbcce"},
-    {file = "prefect-2.6.2.tar.gz", hash = "sha256:12e6d45d10b2d56c26edc008a624a88e3ae0775fed2c573818f88bed903b269a"},
+    {file = "prefect-2.6.3-py3-none-any.whl", hash = "sha256:92d1e66501ac4cc9d061d3e57c6c1185b2ebf70918c6636be588b083e8936b28"},
+    {file = "prefect-2.6.3.tar.gz", hash = "sha256:b9d55bb53d220b3c9956bdd4f4aa1307d06298cb0a2e8640b70c26214bdcdf1d"},
 ]
 pyasn1 = [
     {file = "pyasn1-0.4.8-py2.4.egg", hash = "sha256:fec3e9d8e36808a28efb59b489e4528c10ad0f480e57dcc32b4de5c9d8c9fdf3"},
