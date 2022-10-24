@@ -12,8 +12,6 @@ env:
   INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
   # SCHEDULE: {your_schedule} # cron "0 0 * * *"
   STORAGE: s3/gh-test # s3/my_flow_storage
-  PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
-  PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }} # https://api.prefect.cloud/api/accounts/[ACCOUNT-ID]/workspaces/[WORKSPACE-ID]
   FILESYSTEM_EXTRAS: s3fs
 
 jobs:
@@ -39,6 +37,10 @@ jobs:
         run: |
           pip install -U wheel pip $FILESYSTEM_EXTRAS
           pip install -r requirements.txt
+      - name: Prefect Cloud login
+        run: |
+          prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
+          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -64,4 +66,4 @@ jobs:
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME-sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply
+        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply
