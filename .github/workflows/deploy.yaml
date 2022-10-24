@@ -61,9 +61,7 @@ jobs:
       # Branch based logic to submit flows to different workqueues
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -o $DEPLOYMENTYAML -q prod --apply
+        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME-sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply
-      # In order to attach schedules please attached a flag- cron, interval or rrule
-      # Example- prefect deployment build demo.py:pipeline -n etl --cron "0 0 * * *"
