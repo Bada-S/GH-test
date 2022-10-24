@@ -58,8 +58,8 @@ jobs:
           repository: ${{ env.ECRNAME }}
       - name: Push to container registry
         run: |
-          docker build . --tag ${{ env.ECRNAME }}:prefect-orion -f ./Dockerfile
-          docker push ${{ env.ECRNAME }}:prefect-orion
+          docker build . --tag ${{ env.ECRNAME }}:latest-f ./Dockerfile
+          docker push ${{ env.ECRNAME }}:latest
       # Branch based logic to submit flows to different workqueues
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
