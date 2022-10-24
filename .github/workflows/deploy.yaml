@@ -5,13 +5,12 @@ on:
       - "develop"
 
 env:
-  # Examples indicated in comments
   FLOWNAME: myflow
-  DEPLOYMENTNAME: demo # daily_ingestion, 15_min_interval
+  DEPLOYMENT_NAME: test
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
-  INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
-  # SCHEDULE: {your_schedule} # cron "0 0 * * *"
-  STORAGE: s3/gh-test # s3/my_flow_storage
+  INFRA: kubernetes-job/gh-test
+  # SCHEDULE: {your_schedule} # example- cron "0 0 * * *"
+  STORAGE: s3/gh-test
   FILESYSTEM_EXTRAS: s3fs
 
 jobs:
