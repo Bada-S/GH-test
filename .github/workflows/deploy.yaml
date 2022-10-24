@@ -6,10 +6,10 @@ on:
 
 env:
   FLOWNAME: myflow
-  DEPLOYMENTNAME: demo
+  DEPLOYMENT_NAME: test
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
   INFRA: kubernetes-job/gh-test
-  # SCHEDULE: {your_schedule} # cron "0 0 * * *"
+  # SCHEDULE: {your_schedule} # example- cron "0 0 * * *"
   STORAGE: s3/gh-test
   FILESYSTEM_EXTRAS: s3fs
 
@@ -65,6 +65,4 @@ jobs:
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME-sb $STORAGE -ib $INFRA -q dev --apply
-      # In order to attach schedules please attached a flag- cron, interval or rrule
-      # Example- prefect deployment build demo.py:pipeline -n etl --cron "0 0 * * *"
+        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply
