@@ -32,7 +32,7 @@ jobs:
       - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: 3.10
+          python-version: 3.10.0
       - name: Python dependencies
         run: |
           pip install -U wheel pip $FILESYSTEM_EXTRAS
@@ -66,6 +66,6 @@ jobs:
         run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME-sb $STORAGE -ib $INFRA  -o $DEPLOYMENTYAML -q dev --apply
+        run: prefect deployment build ./flow/flow.py:$FLOWNAME -n $DEPLOYMENT_NAME-sb $STORAGE -ib $INFRA -q dev --apply
       # In order to attach schedules please attached a flag- cron, interval or rrule
       # Example- prefect deployment build demo.py:pipeline -n etl --cron "0 0 * * *"
