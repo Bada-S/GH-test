@@ -12,6 +12,8 @@ env:
   INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
   # SCHEDULE: {your_schedule} # cron "0 0 * * *"
   STORAGE: s3/gh-test # s3/my_flow_storage
+  PREFECT_API_KEY: ${{ secrets.prefect_cs_service_account }}
+  PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }}
   FILESYSTEM_EXTRAS: s3fs
 
 jobs:
@@ -29,18 +31,14 @@ jobs:
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
-      - name: Set up Python 3.9
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: 3.10.0
       - name: Python dependencies
         run: |
           pip install -U wheel pip $FILESYSTEM_EXTRAS
           pip install -r requirements.txt
-      - name: Prefect Cloud login
-        run: |
-          prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
-          prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
