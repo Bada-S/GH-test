@@ -5,13 +5,22 @@ on:
       - "develop"
 
 env:
-  FLOWNAME: myflow
-  DEPLOYMENT_NAME: test
+  # Examples indicated in comments
+  FILEPATH: ./flows/flow.py:myflow
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
-  INFRA: kubernetes-job/gh-test
-  # SCHEDULE: {your_schedule} # example- cron "0 0 * * *"
-  STORAGE: s3/gh-test
+  INFRA: kubernetes-job/gh-test # kubernetes-job/example-flow
+  STORAGE: s3/gh-test # s3/my_flow_storage
   FILESYSTEM_EXTRAS: s3fs
+
+jobs:
+  build:
+    name: deploy flow
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - name: test
+            schedule: --cron "0 0 * * *"
 
 jobs:
   build:
