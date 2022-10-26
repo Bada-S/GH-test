@@ -20,7 +20,6 @@ jobs:
         include:
           - name: daily
             schedule: --cron "0 0 * * *"
-            params: --params='{"a":1, "b":2}'
           - name: interval
             schedule: --cron "*/15 * * * *"
             params: --params='{"a":1, "b":2}'
@@ -68,7 +67,7 @@ jobs:
           docker push ${{ env.ECRNAME }}:latest
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build $FILEPATH -n ${{ matrix.name }} -sb $STORAGE -ib $INFRA ${{ matrix.schedule }} ${{ matrix.params }} -q prod --apply
+        run: prefect deployment build $FILEPATH -n ${{ matrix.name }} ${{ matrix.schedule }} ${{ matrix.params }} -sb $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build $FILEPATH -n ${{ matrix.name }} -sb $STORAGE -ib $INFRA ${{ matrix.schedule }} -q dev --apply
+        run: prefect deployment build $FILEPATH -n ${{ matrix.name }} ${{ matrix.schedule }} ${{ matrix.params }} -sb $STORAGE -ib $INFRA -q dev --apply
