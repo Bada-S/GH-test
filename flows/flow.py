@@ -7,7 +7,7 @@ def do_something():
 
 
 @flow
-def myflow():
+def myflow(a: int, b: int):
     do_something()
 
 
