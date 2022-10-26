@@ -6,7 +6,7 @@ on:
 
 env:
   FILEPATH: ./flows/flow.py:myflow
-  ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
+  ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/abcd
   INFRA: kubernetes-job/gh-test
   STORAGE: s3/gh-test
   FILESYSTEM_EXTRAS: s3fs
@@ -20,8 +20,10 @@ jobs:
         include:
           - name: daily
             schedule: --cron "0 0 * * *"
+            params: --params='{"a":1, "b":2}'
           - name: interval
             schedule: --cron "*/15 * * * *"
+            params: --params='{"a":1, "b":2}'
     steps:
       - uses: actions/checkout@v3
       - uses: divideprojects/poetry-export-requirements-action@v1
