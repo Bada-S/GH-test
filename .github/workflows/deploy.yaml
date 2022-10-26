@@ -20,7 +20,7 @@ jobs:
         include:
           - name: daily
             schedule: --cron "0 0 * * *"
-            params: {"a":1, "b":2}
+            params: '{"a":1, "b":2}''
           - name: interval
             schedule: --cron "*/15 * * * *"
     steps:
