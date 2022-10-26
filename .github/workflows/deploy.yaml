@@ -8,7 +8,7 @@ env:
   FILEPATH: ./flows/flow.py:myflow
   ECRNAME: 330830921905.dkr.ecr.us-east-2.amazonaws.com/gh-test
   INFRA: kubernetes-job/gh-test
-  STORAGE: s3/gh-test
+  STORAGE: -sb s3/gh-test
   FILESYSTEM_EXTRAS: s3fs
 
 jobs:
@@ -65,7 +65,7 @@ jobs:
       # Branch based logic to submit flows to different workqueues
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build $FILEPATH -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q prod --apply
+        run: prefect deployment build $FILEPATH -n $DEPLOYMENT_NAME $STORAGE -ib $INFRA -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
         run: prefect deployment build $FILEPATH -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q dev --apply
