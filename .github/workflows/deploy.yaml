@@ -20,10 +20,10 @@ jobs:
         include:
           - name: daily
             schedule: --cron "0 0 * * *"
-            params: '{"number": 1, "word": "one"}'
+            params: {"number": 1, "word": "one"}
           - name: interval
             schedule: --cron "*/15 * * * *"
-            params: '{"number": 2, "word": "two"}'
+            params: {"number": 2, "word": "two"}
     steps:
       - uses: actions/checkout@v3
       - uses: divideprojects/poetry-export-requirements-action@v1
