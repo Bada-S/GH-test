@@ -22,7 +22,6 @@ jobs:
             schedule: --cron "0 0 * * *"
           - name: interval
             schedule: --cron "*/15 * * * *"
-            params: --params='{"a":1, "b":2}'
     steps:
       - uses: actions/checkout@v3
       - uses: divideprojects/poetry-export-requirements-action@v1
