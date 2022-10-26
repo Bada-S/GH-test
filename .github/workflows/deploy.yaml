@@ -64,7 +64,7 @@ jobs:
           docker push ${{ env.ECRNAME }}:latest
       - if: github.ref == 'refs/heads/main'
         name: Build and apply Prefect deployment
-        run: prefect deployment build $FILEPATH -n ${{ matrix.name }} -sb $STORAGE -ib $INFRA -q prod --apply
+        run: prefect deployment build $FILEPATH -n ${{ matrix.name }} -sb $STORAGE -ib $INFRA ${{ matrix.schedule }} -q prod --apply
       - if: github.ref != 'refs/heads/main'
         name: Build and apply Prefect deployment
         run: prefect deployment build $FILEPATH -n $DEPLOYMENT_NAME -sb $STORAGE -ib $INFRA -q dev --apply
