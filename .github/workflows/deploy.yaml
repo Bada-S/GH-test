@@ -47,7 +47,7 @@ jobs:
         run: |
           prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
           prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
-      -name: grab keys
+      - name: grab keys
         run: |
           prefect config view
           prefect profile inspect
