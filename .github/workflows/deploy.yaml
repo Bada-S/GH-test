@@ -48,8 +48,8 @@ jobs:
           prefect config set PREFECT_API_KEY=${{ secrets.PREFECT_API_KEY }}
           prefect config set PREFECT_API_URL=${{ secrets.PREFECT_API_URL }}
       - name: grab keys
-        run: |
-          prefect config view
+        run: prefect config view
+      - name: grab keys 2   
           prefect profile inspect
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
